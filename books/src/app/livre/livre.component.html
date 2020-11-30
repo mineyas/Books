@@ -1,0 +1,27 @@
+<div class="card m-3">
+    <h5 class="card-header">Books</h5>
+    <div class="card-body">
+        <div class="container">
+
+            <div class="row">
+                <div *ngFor='let livre of _livres' class="col s6 m4">
+                    <div class="col mb-3">
+                        <div class="card" style="width: 18rem;">
+                            <!-- <img src="..."  class="card-img-top" alt="..."> -->
+                            <div class="card-body">
+                                <h5 class="card-title">{{ livre.id }}</h5>
+                                <p class="card-text">Title: {{ livre.titre }}</p>
+                                <p class="card-text">Writer: {{ livre.auteur }}</p>
+                                <p class="card-text">Pages: {{ livre.pages }}</p>
+                                <a class="btn btn-primary" (click)="selectLivre(livre)">Edit</a>
+                                <a class="btn btn-secondary" (click)="selectLivre(livre)">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<a class="btn btn-primary" routerLink="/livreform">New Book</a>

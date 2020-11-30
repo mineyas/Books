@@ -1,0 +1,86 @@
+<div class="card m-3">
+    <h5 class="card-header">Book Form</h5>
+    <div class="card-body">
+        <form (ngSubmit)="onSubmit()" #livreForm="ngForm">
+
+            <div class="card-panel">
+                <div class="row mb-3">
+                    <!-- title -->
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input class="form-control" type="text" name="titre" id="titre" required
+                            [(ngModel)]="livre.titre" #titre="ngModel" minlength="6">
+
+                             <!-- error messages for title -->
+                        <div *ngIf="titre.invalid && (titre.dirty || titre.touched)" class="alert alert-danger">
+                            <div *ngIf="titre.errors.required">
+                                titre is required
+                            </div>
+                            <div *ngIf="titre.errors.minlength">
+                                Title must be at least 6 characters long
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- auteur -->
+                    <div class="form-group">
+                        <label for="auteur">Auteur</label>
+                        <input class="form-control" type="text" name="auteur" id="auteur" required
+                            [(ngModel)]="livre.auteur" #auteur="ngModel" minlength="3">
+
+                        <!-- error messages for autor -->
+                        <div *ngIf="auteur.invalid && (auteur.dirty || auteur.touched)" class="alert alert-danger">
+                            <div *ngIf="auteur.errors.required">
+                                Auteur is required
+                            </div>
+                            <div *ngIf="auteur.errors.minlength">
+                                Auteur must be at least 3 characters long
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- pages -->
+
+                    <div class="form-group">
+                        <label for="pages">Pages</label>
+                        <input class="form-control" type="number" name="pages" id="pages" [(ngModel)]="livre.pages"
+                            #pages="ngModel" required [min]="90" [max]="1000">
+
+                            <!-- error messages for pages -->
+                        <div *ngIf="pages.invalid && (pages.dirty || pages.touched)" class="alert alert-danger">
+                            <div *ngIf="pages.errors.required">
+                                Pages is required
+                            </div>
+                            <div *ngIf="pages.errors?.min">
+                                Pages must be at least 90 pages long
+                            </div>
+                            <div *ngIf="pages.errors?.max">
+                                Maximum 1000 Pages
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- buttons -->
+
+                <div class="row mb-1">
+                    <div class="col">
+                        <button type="submit" class="btn btn-primary mr-4"
+                            [disabled]="!livreForm.form.valid">Submit</button>
+                    </div>
+                    <div class="col">
+                        <button type="reset" class="btn btn-secondary">Cancel</button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn btn-secondary" (click)="goBack()">Back</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
